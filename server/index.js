@@ -69,9 +69,13 @@ app.get('/', function(req, res) {
 });
 
 app.get('/teun', async function(req, res) {
-    var u = Method.getUser('Roos', 'Heijkoop');
-    u[0] instanceof User;
-    res.send(`Hello ${u[0].firstName} ${u[0].lastName}`)
+    var u = Method.getUser('Roos', 'Heijkoop')
+        .then(user => {
+            user[0] instanceof User
+            var u = user[0]
+            res.send(u);
+        })
+    // res.send(`Hello ${u[0].firstName} ${u[0].lastName}`)
 })
 
 app.listen(port, function() {

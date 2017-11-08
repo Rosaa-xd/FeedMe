@@ -6,6 +6,11 @@ class Method {
         console.log(firstname + lastname);
         return User.query()
         .where('firstName', 'Roos');
+        // .then(user => {
+        //     user[0] instanceof User;
+        //     var u = user[0];
+        //     return u;
+        // });
     }
 }
 module.exports = Method;
