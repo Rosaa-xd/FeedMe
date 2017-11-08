@@ -5,9 +5,11 @@ const Model = require('objection').Model;
 const Knex = require('knex');
 const knexConfig = require('../knexfile');
 const User = require('./models/User');
-
+const Method = require('./models/Methods');
 const knex = Knex(knexConfig.development);
 Model.knex(knex);
+
+
 
 app.get('/user', function(req, res) {
     User.query().insert({
@@ -36,13 +38,11 @@ app.get('/user', function(req, res) {
 });
 
 app.get('/', function(req, res) {
-    User.query()
-        .where('firstName', 'Teun')
-        .then(roos => {
-            roos[0] instanceof User;
-            res.send(`Hey there, ${roos[0].firstName}! Your last name is ${roos[0].lastName}!`);
-            //res.send(`There are ${roos.length} people called ${roos[0].firstName}`);
-        });
+    var m = new Method();
+    var u = m.getUser('Roos','Heijkoop')
+    res.send(`Hello ${u.firstName} ${u.lastName}`)
+    
+   
 });
 
 app.listen(port, function() {
