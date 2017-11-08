@@ -5,13 +5,17 @@ const Model = require('objection').Model;
 const Knex = require('knex');
 const knexConfig = require('../knexfile');
 const User = require('./models/User');
-const transaction = require('objection').transaction;
 
 const knex = Knex(knexConfig.development);
 Model.knex(knex);
 
 app.get('/user', function(req, res) {
-    User.query().insert({firstName: 'Roos', lastName: 'Heijkoop', password: 'password', email: 'email'})
+    User.query().insert({
+        firstName: 'Roos',
+        lastName: 'Heijkoop',
+        password: 'password',
+        email: 'email'
+    })
     .then(roos => {
         console.log(roos instanceof User);
         console.log(roos.firstName);
@@ -32,7 +36,13 @@ app.get('/user', function(req, res) {
 });
 
 app.get('/', function(req, res) {
-    res.send('Hello World!')
+    User.query()
+        .where('firstName', 'Teun')
+        .then(roos => {
+            roos[0] instanceof User;
+            res.send(`Hey there, ${roos[0].firstName}! Your last name is ${roos[0].lastName}!`);
+            //res.send(`There are ${roos.length} people called ${roos[0].firstName}`);
+        });
 });
 
 app.listen(port, function() {
