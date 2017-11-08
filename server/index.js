@@ -6,6 +6,7 @@ const knexConfig = require('../knexfile');
 const User = require('./models/User');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+const Method = require('./models/Methods');
 
 const app = express()
     .use(bodyParser.json())
@@ -66,6 +67,12 @@ app.get('/', function(req, res) {
             res.send(`Hey there, ${roos[0].firstName}! Your last name is ${roos[0].lastName}!`);
         });
 });
+
+app.get('/teun', async function(req, res) {
+    var u = Method.getUser('Roos', 'Heijkoop');
+    u[0] instanceof User;
+    res.send(`Hello ${u[0].firstName} ${u[0].lastName}`)
+})
 
 app.listen(port, function() {
     console.log(`App is running on port ${port}`)
