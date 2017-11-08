@@ -1,13 +1,36 @@
 const express = require('express');
-const app = express();
 const port = 8192;
 const Model = require('objection').Model;
 const Knex = require('knex');
 const knexConfig = require('../knexfile');
 const User = require('./models/User');
+const bodyParser = require('body-parser');
+const morgan = require('morgan');
+
+const app = express()
+    .use(bodyParser.json())
+    .use(morgan('dev'));
 
 const knex = Knex(knexConfig.development);
 Model.knex(knex);
+
+app.post('/timo', function(req,res) {
+    User.query().insert({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        password: req.body.password,
+        email: req.body.email
+    });
+});
+
+app.get('/timo', function(req, res) {
+    User.query()
+        .where('firstName', 'Timo')
+        .then(timo => {
+            timo[0] instanceof User;
+            res.send(`Timo has been inserted ${timo.length} times.`);
+        })
+})
 
 app.get('/user', function(req, res) {
     User.query().insert({
@@ -41,7 +64,6 @@ app.get('/', function(req, res) {
         .then(roos => {
             roos[0] instanceof User;
             res.send(`Hey there, ${roos[0].firstName}! Your last name is ${roos[0].lastName}!`);
-            //res.send(`There are ${roos.length} people called ${roos[0].firstName}`);
         });
 });
 
