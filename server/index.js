@@ -46,10 +46,6 @@ app.get('/', function(req, res) {
                 res.send(user[0].firstName);
             }) 
         )
-   
-        
-    
-   
 });
 
 app.listen(port, function() {
