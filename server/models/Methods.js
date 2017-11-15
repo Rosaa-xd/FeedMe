@@ -2,15 +2,21 @@ const User = require('./User');
 const Model = require('objection').Model;
 
 class Method {
-    static getUser(firstname, lastname){
-        console.log(firstname + lastname);
+    getUserByEmail(email){
         return User.query()
-        .where('firstName', 'Roos');
-        // .then(user => {
-        //     user[0] instanceof User;
-        //     var u = user[0];
-        //     return u;
-        // });
+        .where('email', email);
+    }
+    getUserById(id){
+        return User.query()
+        .where('Id', id);
+    }
+    createUser(firstname, lastname, password, email){
+        User.query().insert({
+            firstName: firstname,
+            lastName: lastname,
+            password: password,
+            email: email
+        })
     }
 }
 module.exports = Method;
