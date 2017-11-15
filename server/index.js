@@ -39,9 +39,12 @@ app.get('/user', function(req, res) {
 
 app.get('/', function(req, res) {
     var m = new Method();
-    var u = m.getUser('Roos','Heijkoop')
-    res.send(`Hello ${u.firstName} ${u.lastName}`)
+    var u = m.getUserByEmail('email')
+    .then(user=>{
+        res.send(user)
+    })
     
+    s
    
 });
 
