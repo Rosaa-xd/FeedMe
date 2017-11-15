@@ -3,8 +3,17 @@ const Model = require('objection').Model;
 
 class userContext {
     getUserByEmail(email){
-        return User.query()
-        .where('email', email);
+        User.query()
+        .where('email', email)
+        .then(user => {
+            console.log("userContext console log:");
+            console.log(user instanceof User);
+            console.log(user.firstName);
+            console.log(user.lastName);
+        })
+        .catch(err => {
+            console.log(err);
+        });
     }
     getUserById(id){
         return User.query()
@@ -16,7 +25,7 @@ class userContext {
             lastName: lastname,
             password: password,
             email: email
-        }).catch(err=>{
+        }).catch(err => {
             console.log(err);
         })
     }
