@@ -5,10 +5,10 @@ const Model = require('objection').Model;
 const Knex = require('knex');
 const knexConfig = require('../knexfile');
 const User = require('./models/User');
-const Method = require('./models/Methods');
+const userRepo = require('./repositories/userRepository');
 const knex = Knex(knexConfig.development);
 Model.knex(knex);
-
+const repo = new userRepo();
 
 
 app.get('/user', function(req, res) {
@@ -38,13 +38,18 @@ app.get('/user', function(req, res) {
 });
 
 app.get('/', function(req, res) {
-    var m = new Method();
-    var u = m.getUserByEmail('email')
+   
+    repo.createUser('John','Johnson','pass', 'supermail@live.nl')
     .then(user=>{
-        res.send(user)
+        console.log(user instanceof User);
+        console.log(user.firstName);
+        console.log(user.lastName);
+    })
+    repo.getUserByEmail('supermail@live.nl').then(user=>{
+        res.send(`${user.firstName} ${user.lastName}`);
     })
     
-    s
+    
    
 });
 
