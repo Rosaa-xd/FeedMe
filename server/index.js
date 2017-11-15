@@ -13,10 +13,10 @@ const repo = new userRepo();
 
 app.get('/user', function(req, res) {
     User.query().insert({
-        firstName: 'Roos',
-        lastName: 'Heijkoop',
+        firstName: 'John',
+        lastName: 'Johnson',
         password: 'password',
-        email: 'email'
+        email: 'supermail@live.nl'
     })
     .then(roos => {
         console.log(roos instanceof User);
@@ -39,16 +39,15 @@ app.get('/user', function(req, res) {
 
 app.get('/', function(req, res) {
    
-    repo.createUser('John','Johnson','pass', 'supermail@live.nl')
-    .then(user=>{
-        console.log(user instanceof User);
-        console.log(user.firstName);
-        console.log(user.lastName);
-    })
-    repo.getUserByEmail('supermail@live.nl').then(user=>{
-        res.send(`${user.firstName} ${user.lastName}`);
-    })
-    
+   
+        repo.createUser('Timo','Hermans','password', 'timo2@live.nl')
+        .then(
+            repo.getUserByEmail('timo2@live.nl').then(user=>{
+                res.send(user[0].firstName);
+            }) 
+        )
+   
+        
     
    
 });

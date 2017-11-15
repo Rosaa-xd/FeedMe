@@ -13,10 +13,10 @@ class userRepo {
         return context.getUserByEmail(email);
     }
     getUserByText(text) {
-       return context.getUserByText(text);
+        return context.getUserByText(text);
     }
     createUser(firstname, lastname, password, email){
-        context.createUser(firstname, lastname, password, email);
+        return context.createUser(firstname, lastname, password, email);
     }
         
 }
