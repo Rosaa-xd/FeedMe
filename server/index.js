@@ -40,12 +40,9 @@ app.get('/user', function(req, res) {
 app.get('/', function(req, res) {
    
     repo.createUser('John','Johnson','pass', 'supermail@live.nl')
-    var u = repo.getUserByEmail('supermail@live.nl').then(user=>{
-        console.log("Index console log");
-        console.log(user instanceof User);
-        console.log(user.firstName);
-        console.log(user.lastName);
-        res.send(`${user.firstName} ${user.lastName}`);
+    repo.getUserByEmail('supermail@live.nl').then(user=>{
+        var t = user[0] instanceof User;
+        res.send(`${t[0].firstName} ${t[0].lastName}`);
     })
     
     
