@@ -48,6 +48,17 @@ app.get('/', function(req, res) {
         )
 });
 
+app.get('/timo', function(req, res) {
+    repo.getUserByEmail('timo.hermans@mediaan.com')
+        .then(timo => {
+            res.send(timo[0].length);
+        })
+});
+
+app.post('/timo', function(req,res) {
+    repo.createUser('Timo', 'Hermans', 'password', 'timo.hermans@mediaan.com');
+});
+
 app.listen(port, function() {
     console.log(`App is running on port ${port}`)
 });
