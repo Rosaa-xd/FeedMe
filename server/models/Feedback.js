@@ -1,11 +1,11 @@
 const Model = require('objection').Model;
 
-class User extends Model {
+class Feedback extends Model {
     static get tableName() {
-        return 'User';
+        return 'Feedback';
     }
     
 }
 
 
-module.exports = User;
+module.exports = Feedback;

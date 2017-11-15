@@ -1,43 +1,22 @@
 const express = require('express');
+const app = express();
 const port = 8192;
 const Model = require('objection').Model;
 const Knex = require('knex');
 const knexConfig = require('../knexfile');
 const User = require('./models/User');
-const bodyParser = require('body-parser');
-const morgan = require('morgan');
-
-const app = express()
-    .use(bodyParser.json())
-    .use(morgan('dev'));
-
+const userRepo = require('./repositories/userRepository');
 const knex = Knex(knexConfig.development);
 Model.knex(knex);
+const repo = new userRepo();
 
-app.post('/timo', function(req,res) {
-    User.query().insert({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        password: req.body.password,
-        email: req.body.email
-    });
-});
-
-app.get('/timo', function(req, res) {
-    User.query()
-        .where('firstName', 'Timo')
-        .then(timo => {
-            timo[0] instanceof User;
-            res.send(`Timo has been inserted ${timo.length} times.`);
-        })
-})
 
 app.get('/user', function(req, res) {
     User.query().insert({
-        firstName: 'Roos',
-        lastName: 'Heijkoop',
+        firstName: 'John',
+        lastName: 'Johnson',
         password: 'password',
-        email: 'email'
+        email: 'supermail@live.nl'
     })
     .then(roos => {
         console.log(roos instanceof User);
@@ -59,12 +38,14 @@ app.get('/user', function(req, res) {
 });
 
 app.get('/', function(req, res) {
-    User.query()
-        .where('firstName', 'Teun')
-        .then(roos => {
-            roos[0] instanceof User;
-            res.send(`Hey there, ${roos[0].firstName}! Your last name is ${roos[0].lastName}!`);
-        });
+   
+   
+        repo.createUser('Timo','Hermans','password', 'timo2@live.nl')
+        .then(
+            repo.getUserByEmail('timo2@live.nl').then(user=>{
+                res.send(user[0].firstName);
+            }) 
+        )
 });
 
 app.listen(port, function() {
