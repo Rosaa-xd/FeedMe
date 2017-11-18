@@ -5,7 +5,8 @@ exports.up = function(knex, Promise) {
         table.increments('id').primary();
         table.integer('teamLead_id')
             .references('id')
-            .inTable('User');
+            .inTable('User')
+            .onDelete('CASCADE');
         table.integer('teamMember_id')
             .references('id')
             .inTable('User');

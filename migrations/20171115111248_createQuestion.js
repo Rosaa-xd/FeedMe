@@ -5,7 +5,8 @@ exports.up = function(knex, Promise) {
         table.increments('id').primary();
         table.integer('goal_id')
             .references('id')
-            .inTable('Goal');
+            .inTable('Goal')
+            .onDelete('CASCADE');
         table.string('question').notNullable();
         table.string('question_type').notNullable();
         table.timestamps();

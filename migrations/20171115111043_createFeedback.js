@@ -8,10 +8,12 @@ exports.up = function(knex, Promise) {
             .inTable('User');
         table.integer('reciever_id')
             .references('id')
-            .inTable('User');
+            .inTable('User')
+            .onDelete('CASCADE');
         table.integer('question_id')
             .references('id')
-            .inTable('Question');
+            .inTable('Question')
+            .onDelete('CASCADE');
         table.boolean('anonymous').notNullable().defaultTo(true);
         table.string('top').notNullable();
         table.string('tip').notNullable();

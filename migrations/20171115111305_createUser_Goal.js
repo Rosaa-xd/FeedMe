@@ -4,10 +4,12 @@ exports.up = function(knex, Promise) {
     .createTable('User_Goal', function(table){
         table.integer('User_id')
             .references('id')
-            .inTable('User');
+            .inTable('User')
+            .onDelete('CASCADE');
         table.integer('Goal_id')
             .references('id')
-            .inTable('Goal');
+            .inTable('Goal')
+            .onDelete('CASCADE');
     });
 };
 
