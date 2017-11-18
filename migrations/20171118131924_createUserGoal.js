@@ -1,4 +1,3 @@
-
 exports.up = function(knex, Promise) {
     return knex.schema
     .createTable('User_Goal', function(table){
@@ -17,4 +16,3 @@ exports.down = function(knex, Promise) {
     return knex.schema
     .dropTableIfExists('User_Goal')
 };
-
