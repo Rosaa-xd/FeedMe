@@ -6,8 +6,8 @@ exports.up = function(knex, Promise) {
             .references('id')
             .inTable('Goal')
             .onDelete('CASCADE');
-        table.string('question').notNullable();
-        table.string('question_type').notNullable();
+        table.boolean('question').notNullable();
+        table.boolean('question_type').notNullable();
         table.timestamps();
     })
 };
