@@ -6,9 +6,6 @@ exports.up = function(knex, Promise) {
             .references('id')
             .inTable('User')
             .onDelete('CASCADE');
-        table.integer('teamMember_id')
-            .references('id')
-            .inTable('User');
     });
 };
 
