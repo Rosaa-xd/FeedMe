@@ -6,10 +6,15 @@ const Knex = require('knex');
 const knexConfig = require('../knexfile');
 const User = require('./models/User');
 const userRepo = require('./repositories/userRepository');
+const bodyParser = require('body-parser');
+const morgan = require('morgan');
 const knex = Knex(knexConfig.development);
 Model.knex(knex);
 const repo = new userRepo();
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(morgan('dev'));
 
 app.get('/user', function(req, res) {
     User.query().insert({
@@ -38,14 +43,7 @@ app.get('/user', function(req, res) {
 });
 
 app.get('/', function(req, res) {
-   
-   
-        repo.createUser('Timo','Hermans','password', 'timo2@live.nl')
-        .then(
-            repo.getUserByEmail('timo2@live.nl').then(user=>{
-                res.send(user[0].firstName);
-            }) 
-        )
+        res.send('Hello World');
 });
 
 app.get('/timo', function(req, res) {
@@ -56,7 +54,9 @@ app.get('/timo', function(req, res) {
 });
 
 app.post('/timo', function(req,res) {
-    repo.createUser('Timo', 'Hermans', 'password', 'timo.hermans@mediaan.com');
+    let data = req.body;
+    repo.createUser(data.firstName, data.lastName, data.password, data.email);
+    res.send("Gelukt!");
 });
 
 app.listen(port, function() {
