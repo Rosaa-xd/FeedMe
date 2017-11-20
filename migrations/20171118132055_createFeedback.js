@@ -5,7 +5,7 @@ exports.up = function(knex, Promise) {
         table.integer('sender_id')
             .references('id')
             .inTable('User');
-        table.integer('reciever_id')
+        table.integer('receiver_id')
             .references('id')
             .inTable('User')
             .onDelete('CASCADE');
