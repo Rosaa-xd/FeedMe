@@ -22,8 +22,9 @@ class userContext {
         });
     }
     getUserByText(text){
+        let search = "%" + text.toLowerCase() + "%";
         return User.query()
-        .where('firstName','LIKE', '*'+text+'*');
+        .where(User.raw('lower("firstName")'),'LIKE', search);
     }
 }
 

@@ -23,6 +23,13 @@ router.get('/byId/:identifier', function(req,res) {
     });
 });
 
+router.get('/filter/:identifier', function(req,res) {
+    userRepo.getUserByText(req.params.identifier)
+    .then(user => {
+        res.send(user);
+    });
+});
+
 router.post('/create', function(req,res) {
     let data = req.body;
     userRepo.createUser(data.firstName, data.lastName, data.password, data.email);
