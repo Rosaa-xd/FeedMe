@@ -22,15 +22,17 @@ class feedbackContext {
             date: date
         })
     }
-    createFeedback(sender,reciever,isAnon,top,tip,comment,date){
+    createFeedback(sender,receiver, top,tip,comment){
         Feedback.query().insert({
             sender_id: sender,
-            reciever_id: reciever,
-            anonymous: isAnon,
+            receiver_id: receiver,
+            anonymous: false,
             top: top,
             tip: tip,
-            comment: comment,
-            date: date
+            comment: comment
+        })
+        .catch (err => {
+            console.log(err);
         })
     }
 }

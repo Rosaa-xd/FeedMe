@@ -6,7 +6,12 @@ const userRepo = new repo();
 let router = express.Router();
 
 router.get('/', function(req,res) {
-    res.send("Hello User");
+    let text=`Hello User,  
+    getByEmail= user/byEmail/email
+    getById= user/byId/id 
+    filterOnName= user/filter/any letter you want to search on 
+    createUser= user/create`
+    res.send(text);
 });
 
 router.get('/byEmail/:identifier', function(req,res) {

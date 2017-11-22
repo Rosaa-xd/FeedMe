@@ -17,8 +17,8 @@ class feedbackRepo {
     createFeedbackToQuestion(sender,reciever,question,isAnon,top,tip,comment,date){
         context.createFeedbackToQuestion(sender,reciever,question,isAnon,top,tip,comment,date);
     }
-    createFeedback(sender,reciever,isAnon,top,tip,comment,date){
-        context.createFeedback(sender,reciever,isAnon,top,tip,comment,date)
+    createFeedback(sender,reciever,top,tip,comment){
+        context.createFeedback(sender,reciever,top,tip,comment)
     }
         
 }
