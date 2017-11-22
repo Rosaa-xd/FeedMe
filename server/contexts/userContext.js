@@ -24,7 +24,8 @@ class userContext {
     getUserByText(text){
         let search = "%" + text.toLowerCase() + "%";
         return User.query()
-        .where(User.raw('lower("firstName")'),'LIKE', search);
+        .where(User.raw('lower("firstName")'),'LIKE', search)
+        .orWhere(User.raw('lower("lastName")'), 'LIKE', search);
     }
 }
 
