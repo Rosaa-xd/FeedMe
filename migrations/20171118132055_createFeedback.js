@@ -1,4 +1,3 @@
-
 exports.up = function(knex, Promise) {
     return knex.schema
     .createTable('Feedback', function(table){
@@ -6,12 +5,14 @@ exports.up = function(knex, Promise) {
         table.integer('sender_id')
             .references('id')
             .inTable('User');
-        table.integer('reciever_id')
+        table.integer('receiver_id')
             .references('id')
-            .inTable('User');
+            .inTable('User')
+            .onDelete('CASCADE');
         table.integer('question_id')
             .references('id')
-            .inTable('Question');
+            .inTable('Question')
+            .onDelete('CASCADE');
         table.boolean('anonymous').notNullable().defaultTo(true);
         table.string('top').notNullable();
         table.string('tip').notNullable();
