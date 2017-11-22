@@ -17,7 +17,7 @@ class userContext {
     }
     getUserById(id){
         return User.query()
-        .where('Id', id);
+        .where('id', id);
     }
     createUser(firstname, lastname, password, email){
         return User.query().insert({

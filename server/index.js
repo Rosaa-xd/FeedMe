@@ -11,36 +11,12 @@ const morgan = require('morgan');
 const knex = Knex(knexConfig.development);
 Model.knex(knex);
 const repo = new userRepo();
+const userRouting = require('./routing/userRouting');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(morgan('dev'));
-
-app.get('/user', function(req, res) {
-    User.query().insert({
-        firstName: 'John',
-        lastName: 'Johnson',
-        password: 'password',
-        email: 'supermail@live.nl'
-    })
-    .then(roos => {
-        console.log(roos instanceof User);
-        console.log(roos.firstName);
-        console.log(roos.lastName);
-    })
-    .catch(err => {
-        console.log(err);
-    });
-
-    User.query()
-        .then(users => {
-            console.log(users[0] instanceof User);
-            console.log('There are ', users.length, ' users in total');
-        })
-        .catch(err => {
-            console.log(err);
-        });
-});
+app.use('/user', userRouting);
 
 app.get('/', function(req, res) {
         res.send('Hello World');

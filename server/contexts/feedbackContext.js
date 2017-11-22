@@ -4,7 +4,7 @@ const Model = require('objection').Model;
 class feedbackContext { 
     getFeedbackByRecievingUserId(id){
         return Feedback.query()
-        .where('reciever_id', id);
+        .where('receiver_id', id);
     }
     getFeedbackBySendingUserId(id){
         return Feedback.query()
