@@ -6,18 +6,27 @@ const userRepo = new repo();
 let router = express.Router();
 
 router.get('/', function(req,res) {
-    if (req.param('id') != null) {
-        userRepo.getUserById(req.param('id'))
+    res.send("Hello User");
+});
+
+router.get('/byEmail/:identifier', function(req,res) {
+    userRepo.getUserByEmail(req.params.identifier)
         .then(user => {
             res.send(user);
         });
-    }
-    else if (req.param('email') != null) {
-        userRepo.getUserByEmail(req.param('email'))
-            .then(user => {
-                res.send(user);
-            });
-    }
+});
+
+router.get('/byId/:identifier', function(req,res) {
+    userRepo.getUserById(req.params.identifier)
+    .then(user => {
+        res.send(user);
+    });
+});
+
+router.post('/create', function(req,res) {
+    let data = req.body;
+    userRepo.createUser(data.firstName, data.lastName, data.password, data.email);
+    res.send("Done");
 });
 
 module.exports = router;
