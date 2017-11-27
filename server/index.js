@@ -16,10 +16,13 @@ const feedbackRouting = require('./routing/feedbackRouting');
 const goalRouting = require('./routing/goalRouting');
 const teamRouting = require('./routing/teamRouting');
 const questionRouting = require('./routing/questionRouting');
+const cors = require('cors');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(morgan('dev'));
+app.use(cors());
+
 app.use('/user', userRouting);
 app.use('/feedback',feedbackRouting);
 app.use('/goal', goalRouting);
