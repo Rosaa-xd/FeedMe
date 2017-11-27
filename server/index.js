@@ -1,28 +1,32 @@
+// Server setup
 const express = require('express');
 const app = express();
 const port = 8192;
+
+// Dev Libraries
 const Model = require('objection').Model;
 const Knex = require('knex');
 const knexConfig = require('../knexfile');
-const User = require('./models/User');
-const userRepo = require('./repositories/userRepository');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+const cors = require('cors');
 const knex = Knex(knexConfig.development);
 Model.knex(knex);
-const repo = new userRepo();
+
+// Routing
 const userRouting = require('./routing/userRouting');
 const feedbackRouting = require('./routing/feedbackRouting');
 const goalRouting = require('./routing/goalRouting');
 const teamRouting = require('./routing/teamRouting');
 const questionRouting = require('./routing/questionRouting');
-const cors = require('cors');
 
+// Using Dev Libs
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(morgan('dev'));
 app.use(cors());
 
+// Attaching Routing
 app.use('/user', userRouting);
 app.use('/feedback',feedbackRouting);
 app.use('/goal', goalRouting);
