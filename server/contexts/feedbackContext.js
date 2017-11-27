@@ -10,18 +10,6 @@ class feedbackContext {
         return Feedback.query()
         .where('sender_id', id);
     }
-    createFeedbackToQuestion(sender,reciever,question,isAnon,top,tip,comment,date){
-        Feedback.query().insert({
-            sender_id: sender,
-            reciever_id: reciever,
-            question_id: question,
-            anonymous: isAnon,
-            top: top,
-            tip: tip,
-            comment: comment,
-            date: date
-        })
-    }
     createFeedback(sender,receiver, top,tip,comment){
         Feedback.query().insert({
             sender_id: sender,
@@ -34,7 +22,7 @@ class feedbackContext {
         })
         .catch (err => {
             console.log(err);
-        })
+        });
     }
 }
 module.exports = feedbackContext;

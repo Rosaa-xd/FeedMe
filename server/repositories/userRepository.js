@@ -1,9 +1,7 @@
-//import express from'express';
 const User = require('../models/User');
 const cntxt = require('../contexts/UserContext');
 const Model = require('objection').Model;
 const context = new cntxt();
-//let router = express.Router();
 
 class userRepo { 
     getUserById(id) {
@@ -20,9 +18,5 @@ class userRepo {
     }
         
 }
-
-// router.get('/usertest', function(res,req){
-
-// })
 
 module.exports = userRepo;
