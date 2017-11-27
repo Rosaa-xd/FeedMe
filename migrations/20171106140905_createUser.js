@@ -7,6 +7,7 @@ exports.up = function(knex) {
         table.string('email').notNullable();
         table.boolean('goldCard').notNullable().defaultTo(false);
         table.integer('score').notNullable().defaultTo(0);
+        table.string('function').notNullable().defaultTo('Peasant');
     });
 };
 

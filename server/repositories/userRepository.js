@@ -13,8 +13,8 @@ class userRepo {
     getUserByText(text) {
         return context.getUserByText(text);
     }
-    createUser(firstname, lastname, password, email){
-        return context.createUser(firstname, lastname, password, email);
+    createUser(firstname, lastname, password, email, func){
+        return context.createUser(firstname, lastname, password, email, func);
     }
         
 }

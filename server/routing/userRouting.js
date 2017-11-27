@@ -37,7 +37,7 @@ router.get('/filter/:identifier', function(req,res) {
 
 router.post('/create', function(req,res) {
     let data = req.body;
-    userRepo.createUser(data.firstName, data.lastName, data.password, data.email);
+    userRepo.createUser(data.firstName, data.lastName, data.password, data.email, data.function);
     res.send("Done");
 });
 

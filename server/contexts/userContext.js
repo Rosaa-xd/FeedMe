@@ -12,12 +12,13 @@ class userContext {
         .where('id', id)
         .eager('[sendFeedback,receiveFeedback]');
     }
-    createUser(firstname, lastname, password, email){
+    createUser(firstname, lastname, password, email, func){
         User.query().insert({
             firstName: firstname,
             lastName: lastname,
             password: password,
-            email: email
+            email: email,
+            function: func
         })
         .catch (err => {
             console.log(err);
