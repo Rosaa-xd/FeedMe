@@ -29,7 +29,8 @@ class feedbackContext {
             anonymous: false,
             top: top,
             tip: tip,
-            comment: comment
+            comment: comment,
+            created_at: new Date()
         })
         .catch (err => {
             console.log(err);

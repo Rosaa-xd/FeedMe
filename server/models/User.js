@@ -20,7 +20,7 @@ class User extends Model {
                 }
             },
 
-            receiveFeedback: {
+            receivedFeedback: {
                 relation: Model.HasManyRelation,
                 modelClass: Feedback,
                 join: {
