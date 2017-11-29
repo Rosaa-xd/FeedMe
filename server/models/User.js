@@ -10,6 +10,8 @@ class User extends Model {
     
     static get relationMappings() {
         const Feedback = require('./Feedback');
+        const Team = require('./Team');
+        const Goal = require('./Goal');
         return {
             sendFeedback: {
                 relation: Model.HasManyRelation,
@@ -26,6 +28,41 @@ class User extends Model {
                 join: {
                     from: 'User.id',
                     to: 'Feedback.receiver_id'
+                }
+            },
+
+            leadingTeams: {
+                relation: Model.HasManyRelation,
+                modelClass: Team,
+                join: {
+                    from: 'User.id',
+                    to: 'Team.teamLead_id'
+                }
+            },
+
+            memberOfTeams: {
+                relation: Model.ManyToManyRelation,
+                modelClass: Team,
+                join: {
+                    from: 'User.id',
+                    through: {
+                        from: 'UserTeam.user_id',
+                        to: 'UserTeam.team_id'
+                    },
+                    to: 'Team.id'
+                }
+            },
+            
+            goals: {
+                relation: Model.ManyToManyRelation,
+                modelClass: Goal,
+                join: {
+                    from: 'User.id',
+                    through: {
+                        from: 'User_Goal.user_id',
+                        to: 'User_Goal.goal_id'
+                    },
+                    to: 'Goal.id'
                 }
             }
         };
