@@ -41,7 +41,7 @@ router.post('/create', function(req,res) {
     let hash = createHash('md5');
     let newpas = hash.update(data.password);
     newpas = newpas.digest('hex');
-    userRepo.createUser(data.firstName, data.lastName,newpas , data.email, data.function);
+    userRepo.createUser(data.firstName, data.lastName, newpas, data.email, data.function);
     res.send("Done");
 });
 
