@@ -17,7 +17,7 @@ exports.up = function(knex, Promise) {
         table.string('top').notNullable();
         table.string('tip').notNullable();
         table.string('comment');
-        table.timestamps('date');
+        table.timestamps();
     });
 
 };

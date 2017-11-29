@@ -4,7 +4,7 @@ exports.up = function(knex) {
         table.string('firstName').notNullable();
         table.string('lastName').notNullable();
         table.string('password').notNullable();
-        table.string('email').notNullable();
+        table.string('email').unique().notNullable();
         table.boolean('goldCard').notNullable().defaultTo(false);
         table.integer('score').notNullable().defaultTo(0);
         table.string('function').notNullable().defaultTo('Peasant');
@@ -12,5 +12,6 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-    return knex.schema.dropTableIfExists('User')
+    return knex.schema
+    .dropTableIfExists('User')
 };

@@ -1,6 +1,7 @@
 const express = require('express');
 const User = require('../models/User');
 const repo = require('../repositories/userRepository');
+const createHash = require('crypto').createHash;
 const userRepo = new repo();
 
 let router = express.Router();
@@ -37,8 +38,28 @@ router.get('/filter/:identifier', function(req,res) {
 
 router.post('/create', function(req,res) {
     let data = req.body;
-    userRepo.createUser(data.firstName, data.lastName, data.password, data.email, data.function);
+    let hash = createHash('md5');
+    let newpas = hash.update(data.password);
+    newpas = newpas.digest('hex');
+    userRepo.createUser(data.firstName, data.lastName,newpas , data.email, data.function);
     res.send("Done");
 });
 
+router.post('/login', function(req,res){
+    let data = req.body;
+    let hash = createHash('md5');
+    let newpas = hash.update(data.password);
+    newpas = newpas.digest('hex');
+    userRepo.login(data.email, newpas)
+        .then(user=>{
+            user[0] instanceof User;
+            if (user[0].password != newpas) {
+                res.send(`Incorrect login credentials`);
+            }
+            else {
+                res.send(user[0]);
+            }
+        });
+    
+})
 module.exports = router;

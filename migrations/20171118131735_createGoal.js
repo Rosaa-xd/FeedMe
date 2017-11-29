@@ -3,6 +3,7 @@ exports.up = function(knex, Promise) {
     .createTable('Goal', function(table){
         table.increments('id').primary();
         table.string('goalName').notNullable();
+        table.timestamps();
     });
 };
 

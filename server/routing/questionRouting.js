@@ -8,5 +8,6 @@ router.get('/', function(req,res) {
         this part of the API will be filled in soon`;
     res.send(text);
 })
+router.get('/')
 
 module.exports = router;

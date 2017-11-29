@@ -14,7 +14,11 @@ class userRepo {
         return context.getUserByText(text);
     }
     createUser(firstname, lastname, password, email, func){
+        console.log(password);
         return context.createUser(firstname, lastname, password, email, func);
+    }
+    login(email,password){
+        return context.login(email,password);
     }
         
 }

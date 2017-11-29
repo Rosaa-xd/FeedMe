@@ -31,6 +31,9 @@ class userContext {
         .orWhere(User.raw('lower("lastName")'), 'LIKE', search)
         .eager('[sendFeedback,receiveFeedback]');
     }
+    login(email,password){
+        return User.query().where('email',email);
+    }
 }
 
 module.exports = userContext;
