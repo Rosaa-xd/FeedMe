@@ -4,7 +4,8 @@ exports.up = function(knex, Promise) {
         table.increments('id').primary();
         table.integer('sender_id')
             .references('id')
-            .inTable('User');
+            .inTable('User')
+            .onDelete('CASCADE');
         table.integer('receiver_id')
             .references('id')
             .inTable('User')
