@@ -10,6 +10,7 @@ router.get('/', function(req,res) {
     let text=`Hello User,  
     getByEmail= user/byEmail/email
     getById= user/byId/id 
+    getNameOfUserById = user/nameById/id
     filterOnName= user/filter/any letter you want to search on 
     createUser= user/create`
     res.send(text);
@@ -36,6 +37,13 @@ router.get('/filter/:identifier', function(req,res) {
     });
 });
 
+// get name of user by id
+router.get('/nameById/:identifier', function(req,res) {
+    userRepo.getNameById(req.params.identifier)
+    .then(user => {
+        res.send(user);
+    });
+});
 router.post('/create', function(req,res) {
     let data = req.body;
     let hash = createHash('md5');

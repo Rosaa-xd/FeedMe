@@ -12,6 +12,11 @@ class userContext {
         .where('id', id)
         .eager('[sendFeedback,receivedFeedback]');
     }
+    getNameById(id){
+        return User.query()
+        .select('User.firstName', 'User.lastName')
+        .where('id', id)
+    }
     createUser(firstname, lastname, password, email, func){
         User.query().insert({
             firstName: firstname,
