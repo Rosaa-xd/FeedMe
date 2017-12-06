@@ -20,6 +20,9 @@ class userRepo {
     login(email,password){
         return context.login(email,password);
     }
+    getNameById(id){
+        return context.getNameById(id);
+    }
         
 }
 

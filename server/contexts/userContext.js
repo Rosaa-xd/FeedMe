@@ -5,12 +5,17 @@ class userContext {
     getUserByEmail(email){
         return User.query()
         .where('email', email)
-        .eager('[sendFeedback,receiveFeedback]');
+        .eager('[sendFeedback,receivedFeedback]');
     }
     getUserById(id){
         return User.query()
         .where('id', id)
-        .eager('[sendFeedback,receiveFeedback]');
+        .eager('[sendFeedback,receivedFeedback]');
+    }
+    getNameById(id){
+        return User.query()
+        .select('User.firstName', 'User.lastName')
+        .where('id', id)
     }
     createUser(firstname, lastname, password, email, func){
         User.query().insert({
@@ -29,7 +34,7 @@ class userContext {
         return User.query()
         .where(User.raw('lower("firstName")'),'LIKE', search)
         .orWhere(User.raw('lower("lastName")'), 'LIKE', search)
-        .eager('[sendFeedback,receiveFeedback]');
+        .eager('[sendFeedback,receivedFeedback]');
     }
     login(email,password){
         return User.query().where('email',email);
