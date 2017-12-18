@@ -21,7 +21,7 @@ class goalContext {
         })
         .catch(err => {
             console.log(err);
-        })
+        });
     }
 }
 
