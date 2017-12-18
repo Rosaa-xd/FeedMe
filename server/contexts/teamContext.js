@@ -1,5 +1,9 @@
 const Team = require('../models/Team');
 const Model = require('objection').Model;
+const knexConfig = require('../../knexfile');
+const Knex = require('knex');
+const knex = Knex(knexConfig.development);
+Model.knex(knex);
 
 class teamContext {
     getTeamById(team_id) {
@@ -15,11 +19,15 @@ class teamContext {
             console.log(err);
         })
     }
-    // addTeamMember(team_id, teamMember) {
-    //     Team.insert({
-
-    //     })
-    // }
+    addTeamMember(team_id, teamMember) {
+        knex('UserTeam').insert({
+            team_id: team_id,
+            user_id: teamMember
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }
 }
 
 module.exports = teamContext;

@@ -17,4 +17,10 @@ router.post('/create', function(req,res) {
     res.send('Done');
 })
 
+router.post('/addTeamMember', function(req,res) {
+    let data = req.body;
+    teamRepo.addTeamMember(data.team_id, data.teamMember);
+    res.send('Done');
+})
+
 module.exports = router;
