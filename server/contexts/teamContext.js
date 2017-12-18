@@ -6,15 +6,6 @@ const knex = Knex(knexConfig.development);
 Model.knex(knex);
 
 class teamContext {
-<<<<<<< HEAD
-    createTeam(leader){
-        Team.query().insert({
-            teamLead_id: leader
-        })
-        .catch (err => {
-            console.log(err);
-        });
-=======
     getTeamById(team_id) {
         return Team.query()
             .where('id', team_id)
@@ -36,7 +27,6 @@ class teamContext {
         .catch(err => {
             console.log(err);
         })
->>>>>>> 9835d708f4dfc5fd90f4605a836e281bf0026e3e
     }
 }
 
