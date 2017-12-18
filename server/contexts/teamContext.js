@@ -7,6 +7,19 @@ class teamContext {
             .where('id', team_id)
             .eager('[teamMembers, teamLead]');
     }
+    create(teamLead) {
+        Team.query().insert({
+            teamLead_id: teamLead
+        })
+        .catch (err => {
+            console.log(err);
+        })
+    }
+    // addTeamMember(team_id, teamMember) {
+    //     Team.insert({
+
+    //     })
+    // }
 }
 
 module.exports = teamContext;
