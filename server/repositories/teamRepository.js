@@ -4,7 +4,9 @@ const Model = require('objection').Model;
 const context = new cntxt();
 
 class teamRepo {
-
+    createTeam(teamLead) {
+        return context.createUser(teamLead);
+    }
 }
 
 module.exports = teamRepo;
