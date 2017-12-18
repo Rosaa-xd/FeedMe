@@ -17,7 +17,7 @@ exports.up = function(knex, Promise) {
         table.boolean('anonymous').notNullable().defaultTo(true);
         table.string('top').notNullable();
         table.string('tip').notNullable();
-        table.string('comment');
+        table.text('comment');
         table.timestamps();
     });
 
