@@ -32,12 +32,6 @@ class goalContext {
                     console.log(err);
                 });
             })
-        // Goal.query().insert({
-        //     goalName: goalName
-        // })
-        // .catch(err => {
-        //     console.log(err);
-        // });
     }
 }
 

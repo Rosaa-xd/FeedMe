@@ -26,6 +26,12 @@ class userRepo {
     getAllUsers() {
         return context.getAllUsers();
     }
+    giveGoldCard(id){
+        context.giveGoldCard(id);
+    }
+    givePoints(points,id){
+        context.givePoints(points,id);
+    }
 }
 
 module.exports = userRepo;
