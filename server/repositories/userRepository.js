@@ -23,7 +23,9 @@ class userRepo {
     getNameById(id){
         return context.getNameById(id);
     }
-        
+    getAllUsers() {
+        return context.getAllUsers();
+    }
 }
 
 module.exports = userRepo;
