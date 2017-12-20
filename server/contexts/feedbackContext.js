@@ -1,16 +1,19 @@
 const Feedback = require('../models/Feedback');
+const repo = require('../repositories/userRepository')
 const Model = require('objection').Model;
 
-class feedbackContext { 
-    getFeedbackByRecievingUserId(id){
+const userRepo = new repo();
+
+class feedbackContext {
+    getFeedbackByRecievingUserId(id) {
         return Feedback.query()
-        .where('receiver_id', id);
+            .where('receiver_id', id);
     }
-    getFeedbackBySendingUserId(id){
+    getFeedbackBySendingUserId(id) {
         return Feedback.query()
-        .where('sender_id', id);
+            .where('sender_id', id);
     }
-    createFeedback(sender,receiver, top,tip,comment){
+    createFeedback(sender, receiver, top, tip, comment) {
         Feedback.query().insert({
             sender_id: sender,
             receiver_id: receiver,
@@ -20,9 +23,13 @@ class feedbackContext {
             comment: comment,
             created_at: new Date()
         })
-        .catch (err => {
-            console.log(err);
-        });
+            .then(point => {
+                userRepo.givePoints(10, sender)
+                userRepo.givePoints(5, receiver)
+            })
+            .catch(err => {
+                console.log(err);
+            });
     }
     askForFeedback(sender, receiver, question) {
         Feedback.query().insert({
@@ -34,9 +41,9 @@ class feedbackContext {
             tip: false,
             created_at: new Date()
         })
-        .catch (err => {
-            console.log(err)
-        });
+            .catch(err => {
+                console.log(err)
+            });
     }
     getAskedFeedback(sender) {
         return Feedback.query()
@@ -59,9 +66,9 @@ class feedbackContext {
             .where({
                 id: feedback_id
             })
-        .catch (err => {
-            console.log(err);
-        })
+            .catch(err => {
+                console.log(err);
+            })
     }
 }
 module.exports = feedbackContext;

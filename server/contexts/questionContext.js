@@ -1,4 +1,7 @@
 const Question = require('../models/Question');
+const repo = require('../repositories/goalRepository');
+const GoalRepo = new repo();
+const Goal = require('../models/Goal');
 const Model = require('objection').Model;
 
 class questionContext {
@@ -21,7 +24,7 @@ class questionContext {
             question: question,
             question_type: questionType
         })
-        .catch (err => {
+        .catch(err => {
             console.log(err);
         })
     }

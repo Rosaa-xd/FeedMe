@@ -14,7 +14,8 @@ router.get('/', function(req,res) {
     getNameOfUserById = user/nameById/id
     filterOnName= user/filter/any letter you want to search on 
     createUser= user/create
-    randomUser = user/getRandom`
+    randomUser = user/getRandom
+    giveGoldCard = user/giveGoldCardTo/id`
     res.send(text);
 });
 
@@ -39,6 +40,10 @@ router.get('/filter/:identifier', function(req,res) {
     });
 });
 
+router.get('/giveGoldCardTo/:identifier',function(req,res){
+    userRepo.giveGoldCard(req.params.identifier);
+    res.send(req.params.identifier + ' now has the goldcard');
+})
 // get name of user by id
 router.get('/nameById/:identifier', function(req,res) {
     userRepo.getNameById(req.params.identifier)
