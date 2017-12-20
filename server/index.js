@@ -20,6 +20,10 @@ const goalRouting = require('./routing/goalRouting');
 const teamRouting = require('./routing/teamRouting');
 const questionRouting = require('./routing/questionRouting');
 
+// Getting All Users
+const repo = require('./repositories/userRepository');
+const userRepo = new repo();
+
 // Using Dev Libs
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -43,3 +47,7 @@ app.listen(port, function() {
 });
 
 var allUsers;
+userRepo.getAllUsers()
+    .then(users => {
+        allUsers = users;
+    });
