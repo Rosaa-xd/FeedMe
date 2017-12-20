@@ -14,9 +14,17 @@ class feedbackRepo {
     getFeedbackByRecievingUserId(id) {
         return context.getFeedbackByRecievingUserId(id);
     }
-    createFeedback(sender,reciever,top,tip,comment){
-        context.createFeedback(sender,reciever,top,tip,comment)
+    createFeedback(sender,receiver,top,tip,comment){
+        context.createFeedback(sender,receiver,top,tip,comment);
     }
-        
+    askForFeedback(sender, receiver, question) {
+        context.askForFeedback(sender,receiver, question);
+    } 
+    getAskedFeedback(sender) {
+        return context.getAskedFeedback(sender);
+    }
+    fillInAskedFeedback(feedback_id, anonymous, top, tip, comment) {
+        context.fillInAskedFeedback(feedback_id, anonymous, top, tip, comment);
+    }
 }
 module.exports = feedbackRepo;
