@@ -40,9 +40,12 @@ class userContext {
         return User.query()
             .where('email',email)
             .eager('[sendFeedback, receivedFeedback, leadingTeams, memberOfTeams, goals]');
+<<<<<<< HEAD
     }
     getAllUsers() {
         return User.query()
+=======
+>>>>>>> 39813b463fdeb591097e8c95f2061cdd59c8889c
     }
 }
 

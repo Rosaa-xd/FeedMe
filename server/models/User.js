@@ -64,7 +64,11 @@ class User extends Model {
                     },
                     to: 'Goal.id'
                 }
+<<<<<<< HEAD
             }
+=======
+            },
+>>>>>>> 39813b463fdeb591097e8c95f2061cdd59c8889c
 
             // goldCards: {
             //     relation: Model.HasManyRelation,
