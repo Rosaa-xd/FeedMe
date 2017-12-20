@@ -41,4 +41,9 @@ router.post('/create', function(req,res) {
     res.send("Done");
 })
 
+router.post('/delete', function(req, res) {
+    goalRepo.delete(req.body.id);
+    res.send(req.body.id + " deleted");
+})
+
 module.exports = router;

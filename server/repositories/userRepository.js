@@ -26,6 +26,9 @@ class userRepo {
     getAllUsers() {
         return context.getAllUsers();
     }
+    getLeaderboard() {
+        return context.getLeaderboard();
+    }
     giveGoldCard(id){
         context.giveGoldCard(id);
     }
