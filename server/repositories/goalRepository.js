@@ -13,8 +13,8 @@ class goalRepo {
     getGoalByText(text) {
         return context.getGoalByText(text);
     }
-    create(goalName) {
-        return context.create(goalName);
+    create(goalName, user_id) {
+        return context.create(goalName, user_id);
     }
 }
 
