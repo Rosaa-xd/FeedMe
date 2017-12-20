@@ -5,6 +5,7 @@ const createHash = require('crypto').createHash;
 const userRepo = new repo();
 
 let router = express.Router();
+var allUsers = null;
 
 router.get('/', function(req,res) {
     let text=`Hello User,  
@@ -12,7 +13,8 @@ router.get('/', function(req,res) {
     getById= user/byId/id 
     getNameOfUserById = user/nameById/id
     filterOnName= user/filter/any letter you want to search on 
-    createUser= user/create`
+    createUser= user/create
+    randomUser = user/getRandom`
     res.send(text);
 });
 
@@ -68,6 +70,26 @@ router.post('/login', function(req,res){
                 res.send(user[0]);
             }
         });
-    
 })
+
+router.get('/getRandom', function (req, res) {
+    randomUser(res);
+})
+
+function randomUser(res) {
+    if (allUsers != null) {
+        var random = Math.floor(Math.random() * allUsers.length);
+        res.send(allUsers[random]);
+    }
+    else {
+        var user;
+        return userRepo.getAllUsers()
+            .then(users => {
+                allUsers = users;
+                var random = Math.floor(Math.random() * allUsers.length); 
+                res.send(allUsers[random]);
+            });
+    }
+}
+
 module.exports = router;
