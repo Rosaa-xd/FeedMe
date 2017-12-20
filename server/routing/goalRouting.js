@@ -10,7 +10,7 @@ router.get('/', function(req,res) {
         getById = goal/byId/id
         getByName = goal/byName/name
         filterOnName = goal/filter/any letter you want to search on
-        create = goal/create`;
+        create = goal/create(goalName, user_id)`;
     res.send(text);
 });
 
