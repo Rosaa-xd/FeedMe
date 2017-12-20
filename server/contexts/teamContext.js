@@ -26,6 +26,17 @@ class teamContext {
         })
         .catch(err => {
             console.log(err);
+        });
+    }
+    deleteTeamMember(team_id, teamMember) {
+        knex('UserTeam')
+            .del()
+            .where({
+                team_id: team_id,
+                user_id: teamMember
+            })
+        .catch(err => {
+            console.log(err);
         })
     }
 }
