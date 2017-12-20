@@ -16,6 +16,9 @@ class goalRepo {
     create(goalName, user_id) {
         return context.create(goalName, user_id);
     }
+    delete(id) {
+        return context.delete(id);
+    }
 }
 
 module.exports = goalRepo;

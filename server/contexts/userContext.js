@@ -45,6 +45,9 @@ class userContext {
     getAllUsers() {
         return User.query()
     }
+    getLeaderboard() {
+        return User.query().orderBy('score', 'desc')
+    }
     giveGoldCard(user_id) {
         User.query().patch({
             goldCard: false
@@ -66,25 +69,32 @@ class userContext {
     }
 
     givePoints(points, id) {
-        getUserById(id)
-            .then(user => {
-                user instanceof User;
+        var user;
+        this.getUserById(id)
+            .then(users => {
+                user = users[0]
                 if (user.goldCard) {
                     User.query().patch({
                         score: user.score + (points * 2)
                     })
-                        .catch(err => {
-                            console.log(err);
-                        });
+                    .where({
+                        id: user.id
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
                 }
-                else (
+                else {
                     User.query().patch({
                         score: user.score + points
                     })
-                        .catch(err => {
-                            console.log(err);
-                        })
-                )
+                    .where({
+                        id:user.id
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
+                }
             })
     }
 }

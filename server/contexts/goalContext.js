@@ -33,6 +33,14 @@ class goalContext {
                 });
             })
     }
+    delete(id) {
+        Goal.query()
+            .del()
+            .where({id:id})
+        .catch(err => {
+            console.log(err);
+        })
+    }
 }
 
 module.exports = goalContext;

@@ -77,6 +77,13 @@ router.post('/login', function(req,res){
         });
 })
 
+router.get('/leaderboard', function(req, res) {
+    userRepo.getLeaderboard()
+        .then(leaderboard => {
+            res.send(leaderboard);
+        })
+})
+
 router.get('/getRandom', function (req, res) {
     randomUser(res);
 })
