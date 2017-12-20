@@ -66,14 +66,14 @@ class User extends Model {
                 }
             },
 
-            goldCards: {
-                relation: Model.HasManyRelation,
-                modelClass: GoldCard,
-                join: {
-                    from: 'User.id',
-                    to: 'GoldCard.User_id'
-                }
-            }
+            // goldCards: {
+            //     relation: Model.HasManyRelation,
+            //     modelClass: GoldCard,
+            //     join: {
+            //         from: 'User.id',
+            //         to: 'GoldCard.User_id'
+            //     }
+            // }
         };
     }
 }
