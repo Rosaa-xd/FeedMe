@@ -19,6 +19,7 @@ const feedbackRouting = require('./routing/feedbackRouting');
 const goalRouting = require('./routing/goalRouting');
 const teamRouting = require('./routing/teamRouting');
 const questionRouting = require('./routing/questionRouting');
+const goldCardRouting = require('./routing/goldCardRouting');
 
 // Using Dev Libs
 app.use(bodyParser.json());
@@ -32,6 +33,7 @@ app.use('/feedback', feedbackRouting);
 app.use('/goal', goalRouting);
 app.use('/team', teamRouting);
 app.use('/question', questionRouting);
+app.use('/goldCard', goldCardRouting);
 
 
 app.get('/', function (req, res) {
