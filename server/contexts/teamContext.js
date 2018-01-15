@@ -18,6 +18,7 @@ class teamContext {
         .catch (err => {
             console.log(err);
         })
+        
     }
     addTeamMember(team_id, teamMember) {
         knex('UserTeam').insert({
