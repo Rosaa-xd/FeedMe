@@ -13,6 +13,13 @@ router.get('/', function(req,res) {
     res.send(text);
 });
 
+router.get('/getById/:identifier', function(req, res) {
+    teamRepo.getById(req.params.identifier)
+        .then(team => {
+            res.send(team);
+        })
+})
+
 router.post('/create', function(req,res) {
     let data = req.body;
     teamRepo.createTeam(data.teamLead);
